@@ -568,10 +568,21 @@ namespace Azure.ResourceManager.Storage.Models
         /// <summary> Storage account keys creation time. </summary>
         /// <param name="key1"></param>
         /// <param name="key2"></param>
+        /// <param name="kerb1"> The creation time of the first Kerberos key, in UTC. </param>
+        /// <param name="kerb2"> The creation time of the second Kerberos key, in UTC. </param>
+        /// <param name="keytab1"> The creation time of the first AES-256 Kerberos keytab, in UTC. </param>
+        /// <param name="keytab2"> The creation time of the second AES-256 Kerberos keytab, in UTC. </param>
         /// <returns> A new <see cref="Models.StorageAccountKeyCreationTime"/> instance for mocking. </returns>
-        public static StorageAccountKeyCreationTime StorageAccountKeyCreationTime(DateTimeOffset? key1, DateTimeOffset? key2)
+        public static StorageAccountKeyCreationTime StorageAccountKeyCreationTime(DateTimeOffset? key1 = default, DateTimeOffset? key2 = default, DateTimeOffset? kerb1 = default, DateTimeOffset? kerb2 = default, DateTimeOffset? keytab1 = default, DateTimeOffset? keytab2 = default)
         {
-            return new StorageAccountKeyCreationTime(key1, key2, default);
+            return new StorageAccountKeyCreationTime(
+                key1,
+                key2,
+                kerb1,
+                kerb2,
+                keytab1,
+                keytab2,
+                default);
         }
 
         /// <summary> The encryption settings on the storage account. </summary>
@@ -2937,6 +2948,23 @@ namespace Azure.ResourceManager.Storage.Models
         public static StorageUsageName StorageUsageName(string value = default, string localizedValue = default)
         {
             return new StorageUsageName(value, localizedValue, default);
+        }
+
+        /// <summary> Storage account keys creation time. </summary>
+        /// <param name="key1"></param>
+        /// <param name="key2"></param>
+        /// <returns> A new <see cref="Models.StorageAccountKeyCreationTime"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StorageAccountKeyCreationTime StorageAccountKeyCreationTime(DateTimeOffset? key1, DateTimeOffset? key2)
+        {
+            return new StorageAccountKeyCreationTime(
+                key1,
+                key2,
+                default,
+                default,
+                default,
+                default,
+                default);
         }
 
         /// <summary> The storage account. </summary>

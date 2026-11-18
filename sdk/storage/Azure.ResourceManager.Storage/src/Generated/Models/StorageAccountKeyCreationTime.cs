@@ -25,11 +25,19 @@ namespace Azure.ResourceManager.Storage.Models
         /// <summary> Initializes a new instance of <see cref="StorageAccountKeyCreationTime"/>. </summary>
         /// <param name="key1"></param>
         /// <param name="key2"></param>
+        /// <param name="kerb1"> The creation time of the first Kerberos key, in UTC. </param>
+        /// <param name="kerb2"> The creation time of the second Kerberos key, in UTC. </param>
+        /// <param name="keytab1"> The creation time of the first AES-256 Kerberos keytab, in UTC. </param>
+        /// <param name="keytab2"> The creation time of the second AES-256 Kerberos keytab, in UTC. </param>
         /// <param name="additionalBinaryDataProperties"> Keeps track of any properties unknown to the library. </param>
-        internal StorageAccountKeyCreationTime(DateTimeOffset? key1, DateTimeOffset? key2, IDictionary<string, BinaryData> additionalBinaryDataProperties)
+        internal StorageAccountKeyCreationTime(DateTimeOffset? key1, DateTimeOffset? key2, DateTimeOffset? kerb1, DateTimeOffset? kerb2, DateTimeOffset? keytab1, DateTimeOffset? keytab2, IDictionary<string, BinaryData> additionalBinaryDataProperties)
         {
             Key1 = key1;
             Key2 = key2;
+            Kerb1 = kerb1;
+            Kerb2 = kerb2;
+            Keytab1 = keytab1;
+            Keytab2 = keytab2;
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
@@ -40,5 +48,21 @@ namespace Azure.ResourceManager.Storage.Models
         /// <summary> Gets or sets the Key2. </summary>
         [WirePath("key2")]
         public DateTimeOffset? Key2 { get; set; }
+
+        /// <summary> The creation time of the first Kerberos key, in UTC. </summary>
+        [WirePath("kerb1")]
+        public DateTimeOffset? Kerb1 { get; }
+
+        /// <summary> The creation time of the second Kerberos key, in UTC. </summary>
+        [WirePath("kerb2")]
+        public DateTimeOffset? Kerb2 { get; }
+
+        /// <summary> The creation time of the first AES-256 Kerberos keytab, in UTC. </summary>
+        [WirePath("keytab1")]
+        public DateTimeOffset? Keytab1 { get; }
+
+        /// <summary> The creation time of the second AES-256 Kerberos keytab, in UTC. </summary>
+        [WirePath("keytab2")]
+        public DateTimeOffset? Keytab2 { get; }
     }
 }

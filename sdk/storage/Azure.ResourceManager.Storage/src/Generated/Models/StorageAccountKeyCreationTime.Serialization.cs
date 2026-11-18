@@ -84,6 +84,26 @@ namespace Azure.ResourceManager.Storage.Models
                 writer.WritePropertyName("key2"u8);
                 writer.WriteStringValue(Key2.Value, "O");
             }
+            if (options.Format != "W" && Optional.IsDefined(Kerb1))
+            {
+                writer.WritePropertyName("kerb1"u8);
+                writer.WriteStringValue(Kerb1.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(Kerb2))
+            {
+                writer.WritePropertyName("kerb2"u8);
+                writer.WriteStringValue(Kerb2.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(Keytab1))
+            {
+                writer.WritePropertyName("keytab1"u8);
+                writer.WriteStringValue(Keytab1.Value, "O");
+            }
+            if (options.Format != "W" && Optional.IsDefined(Keytab2))
+            {
+                writer.WritePropertyName("keytab2"u8);
+                writer.WriteStringValue(Keytab2.Value, "O");
+            }
             if (options.Format != "W" && _additionalBinaryDataProperties != null)
             {
                 foreach (var item in _additionalBinaryDataProperties)
@@ -128,6 +148,10 @@ namespace Azure.ResourceManager.Storage.Models
             }
             DateTimeOffset? key1 = default;
             DateTimeOffset? key2 = default;
+            DateTimeOffset? kerb1 = default;
+            DateTimeOffset? kerb2 = default;
+            DateTimeOffset? keytab1 = default;
+            DateTimeOffset? keytab2 = default;
             IDictionary<string, BinaryData> additionalBinaryDataProperties = new ChangeTrackingDictionary<string, BinaryData>();
             foreach (var prop in element.EnumerateObject())
             {
@@ -149,12 +173,55 @@ namespace Azure.ResourceManager.Storage.Models
                     key2 = prop.Value.GetDateTimeOffset("O");
                     continue;
                 }
+                if (prop.NameEquals("kerb1"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    kerb1 = prop.Value.GetDateTimeOffset("O");
+                    continue;
+                }
+                if (prop.NameEquals("kerb2"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    kerb2 = prop.Value.GetDateTimeOffset("O");
+                    continue;
+                }
+                if (prop.NameEquals("keytab1"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    keytab1 = prop.Value.GetDateTimeOffset("O");
+                    continue;
+                }
+                if (prop.NameEquals("keytab2"u8))
+                {
+                    if (prop.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    keytab2 = prop.Value.GetDateTimeOffset("O");
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     additionalBinaryDataProperties.Add(prop.Name, prop.Value.GetUtf8Bytes());
                 }
             }
-            return new StorageAccountKeyCreationTime(key1, key2, additionalBinaryDataProperties);
+            return new StorageAccountKeyCreationTime(
+                key1,
+                key2,
+                kerb1,
+                kerb2,
+                keytab1,
+                keytab2,
+                additionalBinaryDataProperties);
         }
     }
 }

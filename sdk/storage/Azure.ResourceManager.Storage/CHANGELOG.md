@@ -4,6 +4,9 @@
 
 ### Features Added
 
+- Upgraded the default API version to `2026-12-01`.
+- Added optional, read-only `Kerb1`, `Kerb2`, `Keytab1`, and `Keytab2` timestamps to `StorageAccountKeyCreationTime` for inspecting Kerberos key and keytab creation times.
+
 ### Breaking Changes
 
 ### Bugs Fixed
